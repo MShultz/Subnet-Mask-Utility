@@ -11,6 +11,7 @@ public class SubnetMask {
 		this.setSubnet(subnet);
 		this.splitSubnet();
 		this.setValidSubnet();
+		this.splitSubnet();
 	}
 
 	public String getSubnet() {

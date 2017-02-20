@@ -1,7 +1,5 @@
 package shultz.logic.util;
 
-import java.text.DecimalFormat;
-
 public class IPAddress {
 	private String address;
 	private boolean isValidAddress;
@@ -9,6 +7,7 @@ public class IPAddress {
 
 	public IPAddress(String address) {
 		this.setAddress(address);
+		this.setAddressParts();
 		this.setValidAddress();
 	}
 
@@ -29,8 +28,8 @@ public class IPAddress {
 	}
 
 	private boolean digitsAreCorrect() {
-		try {		
-			this.addressParts = address.split("\\.");
+		try {
+
 			if (addressParts.length != 4)
 				return false;
 			for (String part : addressParts) {
@@ -38,7 +37,6 @@ public class IPAddress {
 				if (addressNum > 255 || addressNum < 0)
 					return false;
 			}
-			setAddressParts();
 			return true;
 		} catch (NumberFormatException e) {
 			return false;
@@ -50,12 +48,7 @@ public class IPAddress {
 	}
 
 	public void setAddressParts() {
-
-		DecimalFormat format = new DecimalFormat("00000000");
-		for (int i = 0; i < addressParts.length; i++) {
-			Integer inBinary = Integer.parseInt(Integer.toBinaryString(Integer.parseInt(addressParts[i])));
-			addressParts[i] = format.format(inBinary).toString();
-		}
+		this.addressParts = address.split("\\.");
 	}
 
 }
